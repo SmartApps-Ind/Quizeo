@@ -14,4 +14,11 @@
     <string name="option_text">Select the language for Quiz </string>
     <string name="todo">TODO</string>
     <string name="select_button">PYTHON</string>
+    <string name="email_hint">UserName</string>
+    <string name="email_add">Email</string>
+    <string name="passwordhint">Password</string>
+    <string name="logintext">Login</string>
+    <string name="loginor">or</string>
+    <string name="createtext">create Account</string>
+    <string name="create_account">Create Account</string>
 </resources>

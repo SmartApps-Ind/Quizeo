@@ -63,14 +63,14 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.buttonTrue.setOnClickListener(view -> {
             checkAnswer(true);
-            addpoint();
+
             updateQuestion();
 
 
         });
         binding.buttonFalse.setOnClickListener(view -> {
             checkAnswer(false);
-            deductpoint();
+
             updateQuestion();
 
         });
@@ -85,11 +85,13 @@ public class MainActivity extends AppCompatActivity {
             snackMessageId = R.string.correct_answer;
             fadeAnimation();
             nextquestion();
+            addpoint();
 
         } else {
             snackMessageId = R.string.incorrect;
             shakeAnimation();
             nextquestion();
+            deductpoint();
 
         }
         Snackbar.make(binding.cardView, snackMessageId, Snackbar.LENGTH_SHORT)

@@ -23,6 +23,15 @@ public class OptionActivity extends AppCompatActivity {
             }
         });
 
+        Button button2 = (Button) findViewById(R.id.go_to_quiz2);
+        this.gotobutton2 = button2;
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                OptionActivity.this.startActivity(new Intent(OptionActivity.this, MainActivity2.class));
+            }
+        });
+
+
 
 
 

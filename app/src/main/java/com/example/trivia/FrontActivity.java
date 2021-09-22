@@ -18,7 +18,7 @@ public class FrontActivity extends AppCompatActivity {
         this.startButton = button;
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                FrontActivity.this.startActivity(new Intent(FrontActivity.this, OptionActivity.class));
+                FrontActivity.this.startActivity(new Intent(FrontActivity.this, Login.class));
             }
         });
     }
