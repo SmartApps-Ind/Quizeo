@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trivia">
         <activity
+            android:name=".FinishQuiz"
+            android:exported="true" />
+        <activity
             android:name=".createAccount"
             android:exported="true" />
         <activity

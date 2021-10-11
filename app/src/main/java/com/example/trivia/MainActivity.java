@@ -3,11 +3,14 @@ package com.example.trivia;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 
 import com.example.trivia.data.Repository;
 import com.example.trivia.databinding.ActivityMainBinding;
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private int currentQuestionIndex = 0;
     private int scoreCounter;
+    private Button finishbutton;
+
 
     {
         scoreCounter = 0;
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         questionList = new Repository().getQuestions(questionArrayList -> {
@@ -193,6 +199,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationRepeat(Animation animation) {
 
+            }
+        });
+
+        Button buttonx = (Button) findViewById(R.id.finish_button);
+        this.finishbutton = buttonx;
+        buttonx.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity.this.startActivity(new Intent(MainActivity.this, FinishQuiz.class));
             }
         });
 
