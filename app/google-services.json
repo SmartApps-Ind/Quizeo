@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "6141008914",
+    "project_id": "techtrivia-a99b6",
+    "storage_bucket": "techtrivia-a99b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6141008914:android:fe98d08bbd9d433f0ccccb",
+        "android_client_info": {
+          "package_name": "com.example.trivia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6141008914-ummmuv1g7n105ltnve5233itp19milg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGGsmsY4ENaYr0VQ1UcIckhv1eXS-ab58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6141008914-ummmuv1g7n105ltnve5233itp19milg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
