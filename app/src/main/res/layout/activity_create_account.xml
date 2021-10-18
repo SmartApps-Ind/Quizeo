@@ -7,7 +7,7 @@
     android:layout_height="fill_parent">
 
     <ProgressBar
-        android:id="@+id/ac_loginprogressbar"
+        android:id="@+id/createaccprogressbar"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,136 +1,200 @@
 package com.example.trivia;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
+
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.regex.Pattern;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
-public class createAccount extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView createaccount , createaccountButton;
-    private EditText username , password;
-    private AutoCompleteTextView email;
+
+public class createAccount extends AppCompatActivity {
+
+    private Button createAcctButton;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseUser currentUser;
+
+
+
+    //Firestore connection
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private CollectionReference collectionReference = db.collection("Users");
+
+
+
+    private EditText emailEditText;
+    private EditText passwordEditText;
     private ProgressBar progressBar;
-
-    private FirebaseAuth mAuth;
+    private EditText userNameEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        mAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        createaccountButton = (Button) findViewById(R.id.createaccountbutton);
-        createaccountButton.setOnClickListener(this);
+        createAcctButton = findViewById(R.id.createaccountbutton);
+        progressBar = findViewById(R.id.createaccprogressbar);
+        emailEditText = findViewById(R.id.ac_emaillogin);
+        passwordEditText = findViewById(R.id.acc_loginpassword);
+        userNameEditText = findViewById(R.id.acc_username);
 
-        username = findViewById(R.id.acc_username);
-        password = findViewById(R.id.acc_loginpassword);
-        email = findViewById(R.id.ac_emaillogin);
-        progressBar = findViewById(R.id.ac_loginprogressbar);
-
-
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId())
-        {
-            case R.id.createaccountbutton:
-                registerUser();
-                break;
-        }
-
-    }
-
-    private void registerUser() {
-
-        String emailid = email.getText().toString().trim();
-        String user = username.getText().toString().trim();
-        String pass = password.getText().toString().trim();
-
-        if(emailid.isEmpty())
-        {
-            email.setError("Email Required");
-            email.requestFocus();
-            return;
-        }
-
-        if(user.isEmpty())
-        {
-            username.setError("Name Required");
-            username.requestFocus();
-            return;
-        }
-
-        if(pass.isEmpty())
-        {
-            password.setError("Passwoed Required");
-            password.requestFocus();
-            return;
-        }
-
-        if(!Patterns.EMAIL_ADDRESS.matcher(emailid).matches())
-        {
-            email.setError("Email not valid");
-            email.requestFocus();
-            return;
-
-        }
-
-        progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(emailid,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                currentUser = firebaseAuth.getCurrentUser();
 
-                if(task.isSuccessful())
-                {
-                    User user1 = new User(user,emailid);
-                    FirebaseDatabase.getInstance().getReference("Users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .setValue(user1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                Toast.makeText(createAccount.this,"user created", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
-                            else{
-                                Toast.makeText(createAccount.this,"failed to create user" , Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        }
-                    });
-
+                if (currentUser != null) {
+                    //user is already loggedin..
+                }else {
+                    //no user yet...
                 }
 
-                else{
-                    Toast.makeText(createAccount.this,"User Created" , Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
-                    createAccount.this.startActivity(new Intent(createAccount.this, OptionActivity.class));
+            }
+        };
+
+        createAcctButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(emailEditText.getText().toString())
+                        && !TextUtils.isEmpty(passwordEditText.getText().toString())
+                        && !TextUtils.isEmpty(userNameEditText.getText().toString())) {
+
+                    String email = emailEditText.getText().toString().trim();
+                    String password = passwordEditText.getText().toString().trim();
+                    String username = userNameEditText.getText().toString().trim();
+
+                    createUserEmailAccount(email, password, username);
+
+                }else {
+                    Toast.makeText(createAccount.this,
+                            "Empty Fields Not Allowed",
+                            Toast.LENGTH_LONG)
+                            .show();
                 }
+
+
+
             }
         });
 
+    }
 
+    private void createUserEmailAccount(String email, String password, final String username) {
+        if (!TextUtils.isEmpty(email)
+                && !TextUtils.isEmpty(password)
+                && !TextUtils.isEmpty(username)) {
+
+            progressBar.setVisibility(View.VISIBLE);
+
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+
+                                currentUser = firebaseAuth.getCurrentUser();
+                                assert currentUser != null;
+                                final String currentUserId = currentUser.getUid();
+
+                                //Create a user Map so we can create a user in the User collection
+                                Map<String, String> userObj = new HashMap<>();
+                                userObj.put("userId", currentUserId);
+                                userObj.put("username", username);
+
+
+                                //save to our firestore database
+                                collectionReference.add(userObj)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                documentReference.get()
+                                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                                if (Objects.requireNonNull(task.getResult()).exists()) {
+                                                                    progressBar.setVisibility(View.INVISIBLE);
+                                                                    String name = task.getResult()
+                                                                            .getString("username");
+
+
+                                                                    Intent intent = new Intent(createAccount.this,
+                                                                            OptionActivity.class);
+                                                                    intent.putExtra("username", name);
+                                                                    intent.putExtra("userId", currentUserId);
+                                                                    startActivity(intent);
+
+
+                                                                }else {
+
+                                                                    progressBar.setVisibility(View.INVISIBLE);
+                                                                }
+
+                                                            }
+                                                        });
+
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+
+                                            }
+                                        });
+
+
+                            }else {
+                                //something went wrong
+                            }
+
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+        }else {
+
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        currentUser = firebaseAuth.getCurrentUser();
+        firebaseAuth.addAuthStateListener(authStateListener);
 
     }
 }

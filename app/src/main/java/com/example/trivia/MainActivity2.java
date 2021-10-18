@@ -194,6 +194,7 @@ public class MainActivity2 extends AppCompatActivity {
                 binding.questionTextView2.setTextColor(Color.WHITE);
             }
 
+
             @Override
             public void onAnimationRepeat(Animation animation) {
 
