@@ -55,7 +55,7 @@ public class MainActivity2 extends AppCompatActivity {
         binding.buttonNext2.setOnClickListener(view -> {
 
             int j = currentQuestionIndex;
-            if(j<questionList.size()=1) {
+            if(j<questionList.size()-1) {
                 MainActivity2.this.startActivity(new Intent(MainActivity2.this, FinishQuiz.class));
             }
             else
