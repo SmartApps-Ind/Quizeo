@@ -10,10 +10,10 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Repository {
+public class Repository2 {
     ArrayList<Question> questionArrayList = new ArrayList<>();
 
-    String url = "https://raw.githubusercontent.com/AshuJoshi001/QuizFille/master/Java.json";
+    String url = "https://raw.githubusercontent.com/AshuJoshi001/QuizFille/master/Python.json";
 
     public List<Question> getQuestions( final AnswerListAsyncResponse callBack) {
 

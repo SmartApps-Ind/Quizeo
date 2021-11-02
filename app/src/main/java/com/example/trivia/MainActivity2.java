@@ -11,10 +11,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-
-import com.example.trivia.data.Repository;
+import com.example.trivia.data.Repository2;
 import com.example.trivia.databinding.ActivityMain2Binding;
-import com.example.trivia.databinding.ActivityMainBinding;
 import com.example.trivia.model.Question;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -29,7 +27,8 @@ public class MainActivity2 extends AppCompatActivity {
     private ActivityMain2Binding binding;
     private int currentQuestionIndex = 0;
     private int scoreCounter;
-    private Button finishbutton2;
+    private Button finishbutton;
+
 
     {
         scoreCounter = 0;
@@ -40,11 +39,11 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_main2);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main2);
 
-        questionList = new Repository().getQuestions(questionArrayList -> {
+        questionList = new Repository2().getQuestions(questionArrayList -> {
 
-                   binding.questionTextView2.setText(questionArrayList.get(currentQuestionIndex)
+                    binding.questionTextView2.setText(questionArrayList.get(currentQuestionIndex)
                             .getAnswer());
 
                     updateCounter(questionArrayList);
@@ -55,8 +54,18 @@ public class MainActivity2 extends AppCompatActivity {
 
         binding.buttonNext2.setOnClickListener(view -> {
 
-            currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
-            updateQuestion();
+            int j = currentQuestionIndex;
+            if(j<questionList.size()=1) {
+                MainActivity2.this.startActivity(new Intent(MainActivity2.this, FinishQuiz.class));
+            }
+            else
+            {
+                currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
+                updateQuestion();
+            }
+
+
+
 
             binding.buttonPrev2.setOnClickListener(v -> {
                 int i=currentQuestionIndex;
@@ -69,14 +78,14 @@ public class MainActivity2 extends AppCompatActivity {
         });
         binding.buttonTrue2.setOnClickListener(view -> {
             checkAnswer(true);
-            addpoint();
+
             updateQuestion();
 
 
         });
         binding.buttonFalse2.setOnClickListener(view -> {
             checkAnswer(false);
-            deductpoint();
+
             updateQuestion();
 
         });
@@ -91,11 +100,13 @@ public class MainActivity2 extends AppCompatActivity {
             snackMessageId = R.string.correct_answer;
             fadeAnimation();
             nextquestion();
+            addpoint();
 
         } else {
             snackMessageId = R.string.incorrect;
             shakeAnimation();
             nextquestion();
+            deductpoint();
 
         }
         Snackbar.make(binding.cardView2, snackMessageId, Snackbar.LENGTH_SHORT)
@@ -194,15 +205,14 @@ public class MainActivity2 extends AppCompatActivity {
                 binding.questionTextView2.setTextColor(Color.WHITE);
             }
 
-
             @Override
             public void onAnimationRepeat(Animation animation) {
 
             }
         });
 
-        Button buttonx = (Button) findViewById(R.id.finish_button);
-        this.finishbutton2 = buttonx;
+        Button buttonx = findViewById(R.id.finishbutton2);
+        this.finishbutton = buttonx;
         buttonx.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 MainActivity2.this.startActivity(new Intent(MainActivity2.this, FinishQuiz.class));
