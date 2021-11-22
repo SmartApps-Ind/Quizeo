@@ -10,13 +10,54 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#141A33"
+        android:background="@drawable/dialogbg"
+
         tools:context=".FinishQuiz">
+
+        <Button
+            android:id="@+id/Logoutbutton"
+            android:layout_width="122dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="148dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="164dp"
+            android:text="LOGOUT"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/finish_score"
+            app:layout_constraintVertical_bias="0.758" />
+
+        <Button
+            android:id="@+id/about"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginRight="96dp"
+            android:layout_marginBottom="168dp"
+            android:text="@string/about"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/logoutbutton"
+            app:layout_constraintHorizontal_bias="0.111"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/finish_score"
+            app:layout_constraintVertical_bias="0.88" />
 
         <TextView
             android:id="@+id/finish_score"
             android:layout_width="366dp"
             android:layout_height="222dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:text="Score"
             android:textColor="#EDE5E5"
             android:textSize="34sp"
@@ -26,22 +67,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/Logoutbutton"
-            android:layout_width="122dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="148dp"
-            android:layout_marginLeft="148dp"
-            android:layout_marginEnd="169dp"
-            android:layout_marginRight="169dp"
-            android:layout_marginBottom="164dp"
-            android:text="LOGOUT"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/finish_score" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

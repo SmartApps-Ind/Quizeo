@@ -3,14 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/dialogbg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/dialogbg1.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/frontscreen.xml" value="0.18307692307692308" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.1875" />
-        <entry key="app/src/main/res/layout/activity_finish_quiz.xml" value="0.12273550724637682" />
+        <entry key="app/src/main/res/layout/activity_finish_quiz.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_front.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/activity_option.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/credit_popup.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/test.xml" value="0.1875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1859375" />
       </map>
     </option>
   </component>

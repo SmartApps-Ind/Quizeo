@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.trivia"
+        applicationId "com.theknight.quizeo"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -32,6 +32,7 @@ android {
     buildFeatures {
         dataBinding true
     }
+
 }
 
 dependencies {

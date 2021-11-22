@@ -15,4 +15,11 @@
         <item name="android:padding">@dimen/button_padding</item>
         <item name="android:textColor">@color/button_text_color</item>
     </style>
+
+    <style name="DiaglogStyle" parent="Theme.AppCompat.Dialog">
+
+
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+    </style>
 </resources>
