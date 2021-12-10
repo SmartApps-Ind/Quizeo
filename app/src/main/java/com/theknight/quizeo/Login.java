@@ -9,37 +9,41 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.theknight.quizeo.controller.Engine;
 
 public class Login extends AppCompatActivity {
 
-    private Button loginButton;
+    private Button loginButton,forgot;
     private Button createAcc;
     private EditText loginemail;
     private EditText loginpassword;
     FirebaseAuth mAuth;
+    private ProgressBar progressBar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        progressBar = findViewById(R.id.loginprogressbar);
         Button button = (Button) findViewById(R.id.loginButton);
         loginemail = findViewById(R.id.emaillogin);
         loginpassword = findViewById(R.id.loginpassword);
+        forgot = findViewById(R.id.forgot);
 
         mAuth = FirebaseAuth.getInstance();
 
 
 
 
-        Button button2 = (Button) findViewById(R.id.createaccountbutton);
+        Button button2 = (Button) findViewById(R.id.createaccountbutton2);
         this.createAcc = button;
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -48,7 +52,28 @@ public class Login extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
+            Engine.setButton(button,R.drawable.down_finish,R.drawable.option_bg);
+
+            String email = loginemail.getText().toString();
+            String password = loginpassword.getText().toString();
+            if (!(TextUtils.isEmpty(email) && TextUtils.isEmpty(password))){
+                progressBar.setVisibility(View.VISIBLE);
+
+
+            }
+
             loginUser();
+        });
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressBar.setVisibility(View.INVISIBLE);
+
+                startActivity(new Intent(Login.this,ForgotPass.class));
+
+
+
+            }
         });
     }
 
@@ -77,13 +102,23 @@ public class Login extends AppCompatActivity {
                     {
                         Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(Login.this,OptionActivity.class));
+                        progressBar.setVisibility(View.INVISIBLE);
                     }
                     else
                     {
-                        Toast.makeText(Login.this,"Login Error",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login.this,"Account does not exist,please register",Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+
                     }
 
                 }
             });
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

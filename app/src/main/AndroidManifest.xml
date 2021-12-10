@@ -3,35 +3,50 @@
     package="com.theknight.quizeo">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name="com.theknight.quizeo.controller.AppController"
+        android:name=".controller.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Trivia">
+        android:theme="@style/Theme.Quizeo">
         <activity
-            android:name="com.theknight.quizeo.FinishQuiz"
-            android:exported="true" />
-        <activity
-            android:name="com.theknight.quizeo.createAccount"
-            android:exported="true" />
-        <activity
-            android:name="com.theknight.quizeo.Login"
-            android:exported="true" />
-        <activity android:name="com.theknight.quizeo.MainActivity2" />
-        <activity android:name="com.theknight.quizeo.OptionActivity" />
-        <activity android:name="com.theknight.quizeo.MainActivity" />
-        <activity android:name="com.theknight.quizeo.FrontActivity">
+            android:name=".SplashScreen"
+            android:theme="@style/SplashTheme"
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ForgotPass"
+            android:exported="false" />
+        <activity
+            android:name=".FinishQuiz"
+            android:exported="true" />
+        <activity
+            android:name=".createAccount"
+            android:exported="true" />
+        <activity
+            android:name=".Login"
+            android:exported="true" />
+        <activity android:name=".MainActivity2" />
+        <activity android:name=".OptionActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".FrontActivity"/>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
 
         <meta-data
             android:name="preloaded_fonts"
