@@ -3,17 +3,51 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/about_bg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/acc_button_bg.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/drawable/button_bg.xml" value="0.1361111111111111" />
         <entry key="app/src/main/res/drawable/dialogbg.xml" value="0.1859375" />
         <entry key="app/src/main/res/drawable/dialogbg1.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/down_finish.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/down_java.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/down_python.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/down_red.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/down_true.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/false_bg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/finish_bg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/forgot_bg.xml" value="0.12962962962962962" />
+        <entry key="app/src/main/res/drawable/front_bg.xml" value="0.1859375" />
         <entry key="app/src/main/res/drawable/frontscreen.xml" value="0.18307692307692308" />
-        <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.1875" />
+        <entry key="app/src/main/res/drawable/java.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/logout.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/next.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/next_down.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/option_bg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/prev.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/prev_down.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/python.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/round_progress.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/rountbutton.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/drawable/selected.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/signup_bg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/signup_main_bg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/splash_background.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/splash_bg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/true_bg.xml" value="0.1859375" />
+        <entry key="app/src/main/res/font/roboto_medium.xml" value="0.12962962962962962" />
+        <entry key="app/src/main/res/layout-v21/activity_front.xml" value="0.16979166666666667" />
+        <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_finish_quiz.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_front.xml" value="0.1875" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1875" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/activity_forgot_pass.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_front.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1875" />
-        <entry key="app/src/main/res/layout/activity_option.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/activity_option.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/credit_popup.xml" value="0.16979166666666667" />
+        <entry key="app/src/main/res/layout/splash_screen.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/test.xml" value="0.1875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1859375" />
       </map>

@@ -6,14 +6,18 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
+import com.theknight.quizeo.controller.Engine;
 import com.theknight.quizeo.data.Repository;
 import com.theknight.quizeo.databinding.ActivityMainBinding;
 import com.theknight.quizeo.model.Question;
@@ -55,12 +59,17 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
+
         binding.buttonNext.setOnClickListener(view -> {
+            Engine.setButton(binding.buttonNext,R.drawable.next,R.drawable.next_down);
+
 
             currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
             updateQuestion();
 
             binding.buttonPrev.setOnClickListener(v -> {
+                Engine.setButton(binding.buttonPrev,R.drawable.prev,R.drawable.prev_down);
+
                 int i=currentQuestionIndex;
                 if(i>0)
                 currentQuestionIndex = (currentQuestionIndex -1 ) % questionList.size();
@@ -70,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
 
         });
         binding.buttonTrue.setOnClickListener(view -> {
+            Engine.setButton(binding.buttonTrue,R.drawable.true_bg,R.drawable.down_true);
+
+
             checkAnswer(true);
 
             updateQuestion();
@@ -77,10 +89,20 @@ public class MainActivity extends AppCompatActivity {
 
         });
         binding.buttonFalse.setOnClickListener(view -> {
+            Engine.setButton(binding.buttonFalse,R.drawable.false_bg,R.drawable.down_red);
+
+
             checkAnswer(false);
 
             updateQuestion();
 
+        });
+        binding.finishButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Engine.setButton(binding.finishButton,R.drawable.finish_bg,R.drawable.down_finish);
+
+                MainActivity.this.startActivity(new Intent(MainActivity.this, FinishQuiz.class));
+            }
         });
 
 
@@ -205,20 +227,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button buttonx = (Button) findViewById(R.id.finish_button);
-        this.finishbutton = buttonx;
-        buttonx.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, FinishQuiz.class));
-            }
-        });
+
+
 
 
     }
 
     public void doVibrate(long time){
         Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(time);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            v.vibrate(VibrationEffect.createOneShot(time,VibrationEffect.DEFAULT_AMPLITUDE));
+        }
+        else{
+            v.vibrate(time);
+        }
 
     }
 
