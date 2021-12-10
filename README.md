@@ -1,5 +1,7 @@
 # Quizeo
-Quizeo is a Quiz Application for android
+Quizeo is a Quiz Application for android 
+
+Latest Version is out [here](https://github.com/SmartApps-Ind/Quizeo/releases/tag/v0.1.3)
 
 # Sample Screenshot
 
